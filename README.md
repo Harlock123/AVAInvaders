@@ -58,11 +58,49 @@ A classic Space Invaders clone built with .NET 9 and Avalonia UI.
 - **No external assets required** - All graphics and sounds generated programmatically
 - **Clean architecture** - Separated Models, Services, and Views
 
+## Download and run
+
+Ready-to-run builds for Windows, macOS and Linux, on both Intel/AMD and ARM, are on the
+[Releases page](https://github.com/Harlock123/AVAInvaders/releases). **Latest build** is rebuilt on
+every push to `master`. Each download is one self-contained executable: no .NET install is
+needed.
+
+```bash
+tar -xzf AVAInvaders-linux-arm64.tar.gz      # or linux-x64, linux-arm, osx-arm64, osx-x64
+./AVAInvaders
+```
+
+On Windows, unzip `AVAInvaders-win-x64.zip` (or `-win-arm64`) and run `AVAInvaders.exe`. On macOS, if
+Gatekeeper refuses to open it, run `xattr -d com.apple.quarantine AVAInvaders` once.
+
+### Linux: sound and gamepads
+
+- **Sound** needs `aplay`, from the `alsa-utils` package. Without it the game runs but is
+  silent. Minimal installs (Arch, Omarchy, some Raspberry Pi images) don't include it:
+
+  ```bash
+  sudo apt install alsa-utils             # Debian / Ubuntu / Raspberry Pi OS
+  sudo pacman -S --needed alsa-utils      # Arch / Omarchy
+  ```
+
+- **Gamepads** use SDL2. It is bundled for Intel/AMD Windows, Intel Macs and Intel/AMD Linux,
+  but not for ARM: on ARM Linux install it as below; on Apple Silicon Macs and Windows on ARM
+  the controller isn't supported yet. Without SDL2 the keyboard still works:
+
+  ```bash
+  sudo apt install libsdl2-dev            # Debian / Ubuntu / Raspberry Pi OS
+  sudo pacman -S --needed sdl2-compat     # Arch / Omarchy
+  ```
+
+  On Debian-based systems it has to be `libsdl2-dev`: the game looks for `libSDL2.so`, which
+  the runtime-only `libsdl2-2.0-0` package doesn't provide.
+
 ## Requirements
 
 - .NET 9.0 SDK
 - For gamepad support: SDL2 library installed on your system
-- For sound on Linux: `aplay` (usually pre-installed)
+- For sound on Linux: `aplay` from `alsa-utils` (not on minimal installs; see
+  [Linux: sound and gamepads](#linux-sound-and-gamepads))
 - For sound on macOS: `afplay` (pre-installed)
 
 ## Building
