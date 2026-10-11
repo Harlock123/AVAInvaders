@@ -2,6 +2,10 @@
 
 A classic Space Invaders clone built with .NET 9 and Avalonia UI.
 
+## Screenshots
+
+![AVA Invaders gameplay: the invader formation with a column shot away, damaged shields and shots in flight](Images/AVAInvaders-gameplay.png)
+
 ## Features
 
 ### Gameplay
